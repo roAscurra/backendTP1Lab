@@ -7,31 +7,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Table(name = "Empresa")
 @Entity
 public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    @Column(name = "")
+    @Column(name = "Denominacion")
     private String denominacion;
-    @Column(name = "")
+    @Column(name = "Telefono")
     private String telefono;
-    @Column(name = "")
+    @Column(name = "HorarioDeAtencion")
     private String horarioAtencion;
-    @Column(name = "")
+    @Column(name = "QuienesSomos")
     private String quienesSomos;
-    @Column(name = "")
+    @Column(name = "Latitud")
     private Double latitud;
-    @Column(name = "")
+    @Column(name = "Longitud")
     private Double longitud;
-    @Column(name = "")
+    @Column(name = "Domicilio")
     private String domicilio;
-    @Column(name = "")
+    @Column(name = "Email")
     private String email;
 }

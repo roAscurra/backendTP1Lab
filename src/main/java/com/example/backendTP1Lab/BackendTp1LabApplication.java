@@ -8,6 +8,7 @@ public class BackendTp1LabApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendTp1LabApplication.class, args);
+		System.out.println("Hola");
 	}
 
 }
