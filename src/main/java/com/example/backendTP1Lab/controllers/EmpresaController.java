@@ -75,7 +75,7 @@ public class EmpresaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
         }
     }
-    // Consultar empresas por denominacion
+    // Endpoint para consultar empresas por denominacion
     @GetMapping("/buscarPorDenominacion/{denominacion}")
     public ResponseEntity<?> buscarPorDenominacion(@PathVariable String denominacion) {
         try {
@@ -85,7 +85,7 @@ public class EmpresaController {
         }
     }
 
-    // Consultar empresas por teléfono
+    // Endpoint para consultar empresas por teléfono
     @GetMapping("/buscarPorTelefono/{telefono}")
     public ResponseEntity<?> buscarEmpresasPorTelefono(@PathVariable String telefono) {
         try {
@@ -98,7 +98,7 @@ public class EmpresaController {
 
 
 
-    // Consultar empresas por horario de atención
+    // Endpoint para consultar empresas por horario de atención
     @GetMapping("/buscarPorHorarioAtencion/{horarioAtencion}")
     public ResponseEntity<?> buscarEmpresasPorHorarioAtencion(@PathVariable String horarioAtencion) throws Exception{
         try{
@@ -109,7 +109,7 @@ public class EmpresaController {
 
     }
 
-    // Consultar empresas por quienes somos
+    // Endpoint para consultar empresas por quienes somos
     @GetMapping("/buscarPorQuienesSomos/{quienesSomos}")
     public ResponseEntity<?> buscarEmpresasPorQuienesSomos(@PathVariable String quienesSomos) throws Exception{
         try{
@@ -119,7 +119,7 @@ public class EmpresaController {
         }
     }
 
-    // Consultar empresas por latitud
+    // Endpoint para consultar empresas por latitud
     @GetMapping("/buscarPorLatitud/{latitud}")
     public ResponseEntity<?> buscarEmpresasPorLatitud(@PathVariable Double latitud) throws Exception{
         try {
@@ -129,7 +129,7 @@ public class EmpresaController {
         }
     }
 
-    // Consultar empresas por longitud
+    // Endpoint para consultar empresas por longitud
     @GetMapping("/buscarPorLongitud/{longitud}")
     public ResponseEntity<?> buscarEmpresasPorLongitud(@PathVariable Double longitud) throws Exception{
         try{
@@ -139,7 +139,7 @@ public class EmpresaController {
         }
     }
 
-    // Consultar empresas por domicilio
+    // Endpoint para consultar empresas por domicilio
     @GetMapping("/buscarPorDomicilio/{domicilio}")
     public ResponseEntity<?> buscarEmpresasPorDomicilio(@PathVariable String domicilio) throws Exception{
         try {
@@ -149,7 +149,7 @@ public class EmpresaController {
         }
     }
 
-    // Consultar empresas por email
+    // Endpoint para consultar empresas por email
     @GetMapping("/buscarPorEmail/{email}")
     public ResponseEntity<?> buscarEmpresasPorEmail(@PathVariable String email) throws Exception{
         try {

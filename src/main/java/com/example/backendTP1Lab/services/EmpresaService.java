@@ -104,7 +104,7 @@ public class EmpresaService {
             throw new Exception(e.getMessage());
         }
     }
-    //consulta por id
+    //buscar por id
     public Optional<Empresa> findById(Integer id) throws Exception{
         try{
             return empresaRepository.findById(id);
@@ -112,7 +112,7 @@ public class EmpresaService {
             throw new Exception(e.getMessage());
         }
     }
-    //consulta por denominacion
+    //buscar por denominacion
     public List<Empresa> findByDenominacion(String denominacion)throws Exception{
         try {
             return empresaRepository.findByDenominacion(denominacion);
@@ -120,7 +120,7 @@ public class EmpresaService {
             throw new Exception(e.getMessage());
         }
     }
-    // Consulta por teléfono
+    // buscar por teléfono
     public List<Empresa> findByTelefono(String telefono) throws Exception {
         try {
             return empresaRepository.findByTelefono(telefono);
@@ -129,7 +129,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por horario de atención
+    // buscar por horario de atención
     public List<Empresa> findByHorarioAtencion(String horarioAtencion) throws Exception {
         try {
             return empresaRepository.findByHorarioAtencion(horarioAtencion);
@@ -138,7 +138,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por quienes somos
+    // buscar por quienes somos
     public List<Empresa> findByQuienesSomos(String quienesSomos) throws Exception {
         try {
             return empresaRepository.findByQuienesSomos(quienesSomos);
@@ -147,7 +147,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por latitud
+    // buscar por latitud
     public List<Empresa> findByLatitud(Double latitud) throws Exception {
         try {
             return empresaRepository.findByLatitud(latitud);
@@ -156,7 +156,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por longitud
+    // buscar por longitud
     public List<Empresa> findByLongitud(Double longitud) throws Exception {
         try {
             return empresaRepository.findByLongitud(longitud);
@@ -165,7 +165,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por domicilio
+    // buscar por domicilio
     public List<Empresa> finByDomicilio(String domicilio) throws Exception {
         try {
             return empresaRepository.findByDomicilio(domicilio);
@@ -174,7 +174,7 @@ public class EmpresaService {
         }
     }
 
-    // Consulta por email
+    // buscar por email
     public List<Empresa> finByEmail(String email) throws Exception {
         try {
             return empresaRepository.findByEmail(email);
@@ -182,7 +182,7 @@ public class EmpresaService {
             throw new Exception(e.getMessage());
         }
     }
-    //obtener denominacion por id
+    // obtener denominacion por id
     public String obtenerDenominacion(int id) {
         Optional<Empresa> empresaOptional = empresaRepository.findById(id);
         if (empresaOptional.isPresent()) {
