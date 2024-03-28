@@ -10,6 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Integer> {
+    @Query("SELECT e FROM Empresa e WHERE LOWER(e.denominacion) LIKE %:param% OR LOWER(e.telefono) LIKE %:param% OR LOWER(e.horarioAtencion) LIKE %:param% OR LOWER(e.quienesSomos) LIKE %:param% OR CAST(e.latitud AS string) LIKE %:param% OR CAST(e.longitud AS string) LIKE %:param% OR LOWER(e.domicilio) LIKE %:param% OR LOWER(e.email) LIKE %:param%")
+    public List<Empresa> buscador(String param);
     @Query("SELECT e FROM Empresa e WHERE LOWER(e.denominacion) LIKE %:denominacion%")
     public List<Empresa> findByDenominacion(String denominacion);
     @Query("SELECT e FROM Empresa e WHERE LOWER(e.telefono) LIKE %:telefono%")

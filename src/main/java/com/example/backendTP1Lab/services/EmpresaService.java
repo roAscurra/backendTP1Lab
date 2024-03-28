@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -45,7 +46,65 @@ public class EmpresaService {
             throw new Exception(e.getMessage());
         }
     }
+    //actualizar
+    public Empresa modificarEmpresa(Integer id, Map<String, Object> cambios) throws Exception {
+        // Verificar si la empresa existe
+        Optional<Empresa> empresaExistente = empresaRepository.findById(id);
+        if (empresaExistente.isPresent()) {
+            // Obtener la empresa existente
+            Empresa empresa = empresaExistente.get();
 
+            // Aplicar los cambios recibidos
+            for (Map.Entry<String, Object> entry : cambios.entrySet()) {
+                String campo = entry.getKey();
+                Object valor = entry.getValue();
+
+                // Actualizar el campo correspondiente de la empresa
+                switch (campo) {
+                    case "denominacion":
+                        empresa.setDenominacion((String) valor);
+                        break;
+                    case "domicilio":
+                        empresa.setDomicilio((String) valor);
+                        break;
+                    case "email":
+                        empresa.setEmail((String) valor);
+                        break;
+                    case "horarioDesAtencion":
+                        empresa.setHorarioAtencion((String) valor);
+                        break;
+                    case "latitud":
+                        empresa.setLatitud((Double) valor);
+                        break;
+                    case "longitud":
+                        empresa.setLongitud((Double) valor);
+                        break;
+                    case "quienesSomos":
+                        empresa.setQuienesSomos((String) valor);
+                        break;
+                    case "telefono":
+                        empresa.setTelefono((String) valor);
+                        break;
+                    default:
+                        // Ignorar campos desconocidos
+                        break;
+                }
+            }
+            // Guardar la empresa actualizada en la base de datos
+            return empresaRepository.save(empresa);
+        } else {
+            throw new Exception("La empresa no se encuentra.");
+        }
+    }
+    //buscador general
+    public List<Empresa> buscador(String param) throws Exception{
+        try{
+            return empresaRepository.buscador(param);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+    //consulta por id
     public Optional<Empresa> findById(Integer id) throws Exception{
         try{
             return empresaRepository.findById(id);
@@ -121,6 +180,86 @@ public class EmpresaService {
             return empresaRepository.findByEmail(email);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
+        }
+    }
+    //obtener denominacion por id
+    public String obtenerDenominacion(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getDenominacion();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener domicilio por id
+    public String obtenerDomicilio(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getDomicilio();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener email por id
+    public String obtenerEmail(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getEmail();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener horario de atencion por id
+    public String obtenerHorarioAtencion(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getHorarioAtencion();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener latitud por id
+    public Double obtenerLatitudPorId(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getLatitud();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener longitud por id
+    public Double obtenerLongitud(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getLongitud();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener quienes somos por id
+    public String obtenerQuienesSomos(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getQuienesSomos();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
+        }
+    }
+    //obtener telefono por id
+    public String obtenerTelefono(int id) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isPresent()) {
+            return empresaOptional.get().getTelefono();
+        } else {
+            // Manejo de caso en el que la empresa no se encuentra
+            throw new RuntimeException("No se encontró ninguna empresa con el ID proporcionado.");
         }
     }
 }

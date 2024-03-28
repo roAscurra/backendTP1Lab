@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -45,7 +46,16 @@ public class EmpresaController {
         }
     }
 
-    // Endpoint para actualizar una empresa existente
+    // Endpoint para modificar una empresa existente
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<?> modificarEmpresa(@PathVariable Integer id, @RequestBody Map<String, Object> cambios) {
+        try {
+            Empresa empresa = empresaService.modificarEmpresa(id, cambios);
+            return ResponseEntity.ok(empresa);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al modificar la empresa: " + e.getMessage());
+        }
+    }
 
     // Endpoint para eliminar una empresa por su ID
     @DeleteMapping("/delete/{id}")
@@ -54,6 +64,15 @@ public class EmpresaController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(empresaService.deleteEmpresa(id));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Por favor intente mas tarde. \"}");
+        }
+    }
+    // Endpoint buscador
+    @GetMapping("/buscar/{parametro}")
+    public ResponseEntity<?> buscador(@PathVariable String parametro) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(empresaService.buscador(parametro));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
         }
     }
     // Consultar empresas por denominacion
@@ -136,6 +155,86 @@ public class EmpresaController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(empresaService.finByEmail(email));
         }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener la denominación de una empresa por su ID
+    @GetMapping("/denominacion/{id}")
+    public ResponseEntity<String> obtenerDenominacion(@PathVariable int id) {
+        try {
+            String denominacion = empresaService.obtenerDenominacion(id);
+            return ResponseEntity.ok(denominacion);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener la domicilio de una empresa por su ID
+    @GetMapping("/domicilio/{id}")
+    public ResponseEntity<String> obtenerDomicilio(@PathVariable int id) {
+        try {
+            String domicilio = empresaService.obtenerDomicilio(id);
+            return ResponseEntity.ok(domicilio);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener la email de una empresa por su ID
+    @GetMapping("/email/{id}")
+    public ResponseEntity<String> obtenerEmail(@PathVariable int id) {
+        try {
+            String email = empresaService.obtenerEmail(id);
+            return ResponseEntity.ok(email);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener la horario de atencion de una empresa por su ID
+    @GetMapping("/horarioAtencion/{id}")
+    public ResponseEntity<String> obtenerHorarioAtencionPorId(@PathVariable int id) {
+        try {
+            String horarioAtencion = empresaService.obtenerHorarioAtencion(id);
+            return ResponseEntity.ok(horarioAtencion);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener latitud de una empresa por su ID
+    @GetMapping("/latitud/{id}")
+    public ResponseEntity<?> obtenerLatitud(@PathVariable int id) {
+        try {
+            Double latitud = empresaService.obtenerLatitudPorId(id);
+            return ResponseEntity.ok(latitud);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+    // Endpoint para obtener longitud de una empresa por su ID
+    @GetMapping("/longitud/{id}")
+    public ResponseEntity<?> obtenerLongitud(@PathVariable int id) {
+        try {
+            Double longitud = empresaService.obtenerLongitud(id);
+            return ResponseEntity.ok(longitud);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+    // Endpoint para obtener quienes somos de una empresa por su ID
+    @GetMapping("/quienesSomos/{id}")
+    public ResponseEntity<String> obtenerQuienesSomos(@PathVariable int id) {
+        try {
+            String quienesSomos = empresaService.obtenerQuienesSomos(id);
+            return ResponseEntity.ok(quienesSomos);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
+        }
+    }
+    // Endpoint para obtener telefono de una empresa por su ID
+    @GetMapping("/telefono/{id}")
+    public ResponseEntity<String> obtenerTelefono(@PathVariable int id) {
+        try {
+            String horarioAtencion = empresaService.obtenerTelefono(id);
+            return ResponseEntity.ok(horarioAtencion);
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage()+"\"}"));
         }
     }
