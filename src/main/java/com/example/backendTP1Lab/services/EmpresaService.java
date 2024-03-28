@@ -19,56 +19,108 @@ public class EmpresaService {
     //eliminar
     public boolean deleteEmpresa(Integer id) throws Exception {
         try {
-
             if (empresaRepository.existsById(id)) {
-
                 empresaRepository.deleteById(id);
-
                 return true;
-
             }
             else {
                 throw new Exception();
             }
-
         }
         catch (Exception e ){
             throw new Exception(e.getMessage());
         }
     }
     //alta
-    public void save(Empresa empresa){
-        empresaRepository.save(empresa);
+    public Empresa save(Empresa empresa)throws Exception {
+        try {
+            empresa = empresaRepository.save(empresa);
+            System.out.println("Estoy en servicio con el id generado:" + empresa.getId());
+
+            System.out.println("Estoy en servicio  generado" + empresa.getDenominacion());
+
+            return empresa;
+        }
+        catch (Exception e ){
+            throw new Exception(e.getMessage());
+        }
     }
-    public Optional<Empresa> findById(Integer id){
-        return empresaRepository.findById(id);
+
+    public Optional<Empresa> findById(Integer id) throws Exception{
+        try{
+            return empresaRepository.findById(id);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
     //consulta por denominacion
-    public List<Empresa> findByDenominacion(String denominacion){
-        return empresaRepository.findByDenominacion(denominacion);
+    public List<Empresa> findByDenominacion(String denominacion)throws Exception{
+        try {
+            return empresaRepository.findByDenominacion(denominacion);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
-    //consulta por telefono
-    public List<Empresa> findByNombre(String nombre){
-        return empresaRepository.findByTelefono(nombre);
+    // Consulta por teléfono
+    public List<Empresa> findByTelefono(String telefono) throws Exception {
+        try {
+            return empresaRepository.findByTelefono(telefono);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    //consulta por horario de atencion
-    public List<Empresa> finByHorarioAtencion(String horario){
-        return empresaRepository.findByHorarioAtencion(horario);
+
+    // Consulta por horario de atención
+    public List<Empresa> findByHorarioAtencion(String horarioAtencion) throws Exception {
+        try {
+            return empresaRepository.findByHorarioAtencion(horarioAtencion);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    //quienes somos
-    public List<Empresa> findByQuienesSomos(String quienesSomos){
-        return empresaRepository.findByQuienesSomos(quienesSomos);
+
+    // Consulta por quienes somos
+    public List<Empresa> findByQuienesSomos(String quienesSomos) throws Exception {
+        try {
+            return empresaRepository.findByQuienesSomos(quienesSomos);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    public List<Empresa> findByLatitud(Double latitud){
-        return empresaRepository.findByLatitud(latitud);
+
+    // Consulta por latitud
+    public List<Empresa> findByLatitud(Double latitud) throws Exception {
+        try {
+            return empresaRepository.findByLatitud(latitud);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    public List<Empresa> findByLongitud(Double longitud){
-        return empresaRepository.findByLongitud(longitud);
+
+    // Consulta por longitud
+    public List<Empresa> findByLongitud(Double longitud) throws Exception {
+        try {
+            return empresaRepository.findByLongitud(longitud);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    public List<Empresa> finByDomicilio(String domicilio){
-        return empresaRepository.findByDomicilio(domicilio);
+
+    // Consulta por domicilio
+    public List<Empresa> finByDomicilio(String domicilio) throws Exception {
+        try {
+            return empresaRepository.findByDomicilio(domicilio);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
-    public List<Empresa> finByEmail(String email){
-        return empresaRepository.findByEmail(email);
+
+    // Consulta por email
+    public List<Empresa> finByEmail(String email) throws Exception {
+        try {
+            return empresaRepository.findByEmail(email);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
